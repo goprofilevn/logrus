@@ -50,7 +50,7 @@ type Entry struct {
 	// Time at which the log entry was created
 	Time time.Time
 
-	// Level the log entry was logged at: Trace, Debug, Info, Warn, Error, Fatal or Panic
+	// Level the log entry was logged at: Trace, Debug, Info, Success, Warn, Error, Fatal or Panic
 	// This field will be set on entry firing and the value will be equal to the one in Logger struct field.
 	Level Level
 
@@ -366,6 +366,10 @@ func (entry *Entry) Infof(format string, args ...interface{}) {
 	entry.Logf(InfoLevel, format, args...)
 }
 
+func (entry *Entry) Successf(format string, args ...interface{}) {
+	entry.Logf(SuccessLevel, format, args...)
+}
+
 func (entry *Entry) Printf(format string, args ...interface{}) {
 	entry.Infof(format, args...)
 }
@@ -409,6 +413,10 @@ func (entry *Entry) Debugln(args ...interface{}) {
 
 func (entry *Entry) Infoln(args ...interface{}) {
 	entry.Logln(InfoLevel, args...)
+}
+
+func (entry *Entry) Successln(args ...interface{}) {
+	entry.Logln(SuccessLevel, args...)
 }
 
 func (entry *Entry) Println(args ...interface{}) {
