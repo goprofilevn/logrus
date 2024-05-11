@@ -109,6 +109,11 @@ func Info(args ...interface{}) {
 	std.Info(args...)
 }
 
+// Success logs a message at level Success on the standard logger.
+func Success(args ...interface{}) {
+	std.Success(args...)
+}
+
 // Warn logs a message at level Warn on the standard logger.
 func Warn(args ...interface{}) {
 	std.Warn(args...)
@@ -152,6 +157,11 @@ func PrintFn(fn LogFunction) {
 // InfoFn logs a message from a func at level Info on the standard logger.
 func InfoFn(fn LogFunction) {
 	std.InfoFn(fn)
+}
+
+// SuccessFn logs a message from a func at level Success on the standard logger.
+func SuccessFn(fn LogFunction) {
+	std.SuccessFn(fn)
 }
 
 // WarnFn logs a message from a func at level Warn on the standard logger.
@@ -199,6 +209,11 @@ func Infof(format string, args ...interface{}) {
 	std.Infof(format, args...)
 }
 
+// Successf logs a message at level Success on the standard logger.
+func Successf(format string, args ...interface{}) {
+	std.Successf(format, args...)
+}
+
 // Warnf logs a message at level Warn on the standard logger.
 func Warnf(format string, args ...interface{}) {
 	std.Warnf(format, args...)
@@ -242,6 +257,11 @@ func Println(args ...interface{}) {
 // Infoln logs a message at level Info on the standard logger.
 func Infoln(args ...interface{}) {
 	std.Infoln(args...)
+}
+
+// Successln logs a message at level Success on the standard logger.
+func Successln(args ...interface{}) {
+	std.Successln(args...)
 }
 
 // Warnln logs a message at level Warn on the standard logger.

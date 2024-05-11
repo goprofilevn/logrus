@@ -76,12 +76,12 @@ func (mw *MutexWrap) Disable() {
 // `Out` and `Hooks` directly on the default logger instance. You can also just
 // instantiate your own:
 //
-//    var log = &logrus.Logger{
-//      Out: os.Stderr,
-//      Formatter: new(logrus.TextFormatter),
-//      Hooks: make(logrus.LevelHooks),
-//      Level: logrus.DebugLevel,
-//    }
+//	var log = &logrus.Logger{
+//	  Out: os.Stderr,
+//	  Formatter: new(logrus.TextFormatter),
+//	  Hooks: make(logrus.LevelHooks),
+//	  Level: logrus.DebugLevel,
+//	}
 //
 // It's recommended to make this a global instance called `log`.
 func New() *Logger {
@@ -168,6 +168,10 @@ func (logger *Logger) Infof(format string, args ...interface{}) {
 	logger.Logf(InfoLevel, format, args...)
 }
 
+func (logger *Logger) Successf(format string, args ...interface{}) {
+	logger.Logf(SuccessLevel, format, args...)
+}
+
 func (logger *Logger) Printf(format string, args ...interface{}) {
 	entry := logger.newEntry()
 	entry.Printf(format, args...)
@@ -226,6 +230,10 @@ func (logger *Logger) Info(args ...interface{}) {
 	logger.Log(InfoLevel, args...)
 }
 
+func (logger *Logger) Success(args ...interface{}) {
+	logger.Log(SuccessLevel, args...)
+}
+
 func (logger *Logger) Print(args ...interface{}) {
 	entry := logger.newEntry()
 	entry.Print(args...)
@@ -263,6 +271,10 @@ func (logger *Logger) DebugFn(fn LogFunction) {
 
 func (logger *Logger) InfoFn(fn LogFunction) {
 	logger.LogFn(InfoLevel, fn)
+}
+
+func (logger *Logger) SuccessFn(fn LogFunction) {
+	logger.LogFn(SuccessLevel, fn)
 }
 
 func (logger *Logger) PrintFn(fn LogFunction) {
@@ -312,6 +324,10 @@ func (logger *Logger) Infoln(args ...interface{}) {
 	logger.Logln(InfoLevel, args...)
 }
 
+func (logger *Logger) Successln(args ...interface{}) {
+	logger.Logln(SuccessLevel, args...)
+}
+
 func (logger *Logger) Println(args ...interface{}) {
 	entry := logger.newEntry()
 	entry.Println(args...)
@@ -347,9 +363,9 @@ func (logger *Logger) Exit(code int) {
 	logger.ExitFunc(code)
 }
 
-//When file is opened with appending mode, it's safe to
-//write concurrently to a file (within 4k message on Linux).
-//In these cases user can choose to disable the lock.
+// When file is opened with appending mode, it's safe to
+// write concurrently to a file (within 4k message on Linux).
+// In these cases user can choose to disable the lock.
 func (logger *Logger) SetNoLock() {
 	logger.mu.Disable()
 }

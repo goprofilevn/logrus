@@ -34,6 +34,8 @@ func ParseLevel(lvl string) (Level, error) {
 		return WarnLevel, nil
 	case "info":
 		return InfoLevel, nil
+	case "success":
+		return SuccessLevel, nil
 	case "debug":
 		return DebugLevel, nil
 	case "trace":
@@ -64,6 +66,8 @@ func (level Level) MarshalText() ([]byte, error) {
 		return []byte("debug"), nil
 	case InfoLevel:
 		return []byte("info"), nil
+	case SuccessLevel:
+		return []byte("success"), nil
 	case WarnLevel:
 		return []byte("warning"), nil
 	case ErrorLevel:
@@ -84,6 +88,7 @@ var AllLevels = []Level{
 	ErrorLevel,
 	WarnLevel,
 	InfoLevel,
+	SuccessLevel,
 	DebugLevel,
 	TraceLevel,
 }
@@ -105,6 +110,9 @@ const (
 	// InfoLevel level. General operational entries about what's going on inside the
 	// application.
 	InfoLevel
+	// SuccessLevel level. General operational entries about what's going on inside the
+	// application.
+	SuccessLevel
 	// DebugLevel level. Usually only enabled when debugging. Very verbose logging.
 	DebugLevel
 	// TraceLevel level. Designates finer-grained informational events than the Debug.
@@ -143,6 +151,7 @@ type FieldLogger interface {
 
 	Debugf(format string, args ...interface{})
 	Infof(format string, args ...interface{})
+	Successf(format string, args ...interface{})
 	Printf(format string, args ...interface{})
 	Warnf(format string, args ...interface{})
 	Warningf(format string, args ...interface{})
@@ -152,6 +161,7 @@ type FieldLogger interface {
 
 	Debug(args ...interface{})
 	Info(args ...interface{})
+	Success(args ...interface{})
 	Print(args ...interface{})
 	Warn(args ...interface{})
 	Warning(args ...interface{})
@@ -161,6 +171,7 @@ type FieldLogger interface {
 
 	Debugln(args ...interface{})
 	Infoln(args ...interface{})
+	Successln(args ...interface{})
 	Println(args ...interface{})
 	Warnln(args ...interface{})
 	Warningln(args ...interface{})
@@ -170,6 +181,7 @@ type FieldLogger interface {
 
 	// IsDebugEnabled() bool
 	// IsInfoEnabled() bool
+	// IsSuccessEnabled() bool
 	// IsWarnEnabled() bool
 	// IsErrorEnabled() bool
 	// IsFatalEnabled() bool

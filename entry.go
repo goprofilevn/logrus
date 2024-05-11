@@ -321,6 +321,10 @@ func (entry *Entry) Info(args ...interface{}) {
 	entry.Log(InfoLevel, args...)
 }
 
+func (entry *Entry) Success(args ...interface{}) {
+	entry.Log(SuccessLevel, args...)
+}
+
 func (entry *Entry) Warn(args ...interface{}) {
 	entry.Log(WarnLevel, args...)
 }
