@@ -288,6 +288,8 @@ func (f *TextFormatter) printColored(b *bytes.Buffer, entry *Entry, keys []strin
 		levelColor = f.LevelColors.Panic
 	case InfoLevel:
 		levelColor = f.LevelColors.Info
+	case SuccessLevel:
+		levelColor = f.LevelColors.Success
 	default:
 		levelColor = f.LevelColors.Default
 	}
