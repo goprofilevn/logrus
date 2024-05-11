@@ -107,12 +107,12 @@ const (
 	ErrorLevel
 	// WarnLevel level. Non-critical entries that deserve eyes.
 	WarnLevel
-	// InfoLevel level. General operational entries about what's going on inside the
-	// application.
-	InfoLevel
 	// SuccessLevel level. General operational entries about what's going on inside the
 	// application.
 	SuccessLevel
+	// InfoLevel level. General operational entries about what's going on inside the
+	// application.
+	InfoLevel
 	// DebugLevel level. Usually only enabled when debugging. Very verbose logging.
 	DebugLevel
 	// TraceLevel level. Designates finer-grained informational events than the Debug.
